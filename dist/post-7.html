@@ -1,0 +1,341 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="utf-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
+        <meta name="description" content="" />
+        <meta name="author" content="" />
+        <title>Sergio Alves</title>
+        <link rel="icon" type="image/x-icon" href="assets/favicon.ico" />
+        <!-- Font Awesome icons (free version)-->
+        <script src="https://use.fontawesome.com/releases/v5.15.3/js/all.js" crossorigin="anonymous"></script>
+        <!-- Google fonts-->
+        <link href="https://fonts.googleapis.com/css?family=Lora:400,700,400italic,700italic" rel="stylesheet" type="text/css" />
+        <link href="https://fonts.googleapis.com/css?family=Open+Sans:300italic,400italic,600italic,700italic,800italic,400,300,600,700,800" rel="stylesheet" type="text/css" />
+        <!-- Core theme CSS (includes Bootstrap)-->
+        <link href="css/styles.css" rel="stylesheet" />
+    </head>
+    <body>
+        <!-- Navigation-->
+        <nav class="navbar navbar-expand-lg navbar-light" id="mainNav">
+            <div class="container px-4 px-lg-5">
+                <a class="navbar-brand" href="index.html">Sergio Alves</a>
+                <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarResponsive" aria-controls="navbarResponsive" aria-expanded="false" aria-label="Toggle navigation">
+                    Menu
+                    <i class="fas fa-bars"></i>
+                </button>
+                <div class="collapse navbar-collapse" id="navbarResponsive">
+                    <ul class="navbar-nav ms-auto py-4 py-lg-0">
+                        <li class="nav-item"><a class="nav-link px-lg-3 py-3 py-lg-4" href="index.html">Home</a></li>
+                        <li class="nav-item"><a class="nav-link px-lg-3 py-3 py-lg-4" href="about.html">About</a></li>
+                    </ul>
+                </div>
+            </div>
+        </nav>
+        <!-- Page Header-->
+        <header class="masthead" style="background-image: url('assets/img/post-7-bg.jpg')">
+            <div class="container position-relative px-4 px-lg-5">
+                <div class="row gx-4 gx-lg-5 justify-content-center">
+                    <div class="col-md-10 col-lg-8 col-xl-7">
+                        <div class="post-heading">
+                            <h1>Walmart — Store Sales Forecasting</h1>
+                            <h2 class="subheading">Forecasting based on Decision Trees & Random Forest</h2>
+                            <span class="meta">
+                                Posted by
+                                <a href="#!">Sergio Alves</a>
+                                on August 07, 2021
+                            </span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </header>
+        <!-- Post Content-->
+        <article class="mb-4">
+            <div class="container px-4 px-lg-5">
+                <div class="row gx-4 gx-lg-5 justify-content-center">
+                    <div class="col-md-10 col-lg-8 col-xl-7">
+                        <p>For this Machine Learning project, we will use the “Walmart Recruiting — Store Sales Forecasting” dataset, from <a href="https://www.kaggle.com/c/walmart-recruiting-store-sales-forecasting" target="_BLANK">Kaggle</a>.</p>
+                        <p>The goal is to predict the Weekly Sales for specific stores, departments and dates.</p>
+
+                        <h2 class="section-heading">Download Data</h2>
+                        <p>First, we install the opendatasets library.</p>
+                        <iframe src="https://jovian.ai/embed?url=https://jovian.ai/sergioalves94/walmart-store-sales-forecasting/v/49&cellId=5" title="Jovian Viewer" height="800" width="100%" style="margin 0 auto; max-width: 800px;" frameborder="0" scrolling="auto"></iframe>
+                        <p>Now we import some libraries that we will use</p>
+                        <iframe src="https://jovian.ai/embed?url=https://jovian.ai/sergioalves94/walmart-store-sales-forecasting/v/49&cellId=7" title="Jovian Viewer" height="228" width="100%" style="margin 0 auto; max-width: 800px;" frameborder="0" scrolling="auto"></iframe>
+                        <p>Here we download the datasets from Kaggle</p>
+                        <iframe src="https://jovian.ai/embed?url=https://jovian.ai/sergioalves94/walmart-store-sales-forecasting/v/49&cellId=9" title="Jovian Viewer" height="182" width="100%" style="margin 0 auto; max-width: 800px;" frameborder="0" scrolling="auto"></iframe>
+                        <p>Let's review the downloaded files.</p>
+                        <iframe src="https://jovian.ai/embed?url=https://jovian.ai/sergioalves94/walmart-store-sales-forecasting/v/49&cellId=11" title="Jovian Viewer" height="201" width="100%" style="margin 0 auto; max-width: 800px;" frameborder="0" scrolling="auto"></iframe>
+                        <p><b>stores.csv: </b>This file contains anonymized information about the 45 stores, indicating the type and size of store.</p>
+                        <p><b>train.csv: </b>This is the historical training data, which covers to 2010-02-05 to 2012-11-01. Within this file we will find the following fields:</p>
+                        <ul>
+                            <li>Store - the store number</li>
+                            <li>Date - the week</li>
+                            <li>Weekly_Sales - sales for the given department in the given store</li>
+                            <li>IsHoliday - whether the week is a special holiday week</li>
+                        </ul>
+                        <p><b>test.csv: </b>This file is identical to train.csv, except we have withheld the weekly sales. We must predict the sales for each triplet of store, department, and date in this file.</p>
+                        <p><b>features.csv: </b>This file contains additional data related to the store, department, and regional activity for the given dates. It contains the following fields:</p>
+                        <ul>
+                            <li>Store - the store number</li>
+                            <li>Date - the week</li>
+                            <li>Temperature - average temperature in the region</li>
+                            <li>Fuel_Price - cost of fuel in the region</li>
+                            <li>MarkDown1-5 - anonymized data related to promotional markdowns that Walmart is running. MarkDown data is only available after Nov 2011, and is not available for all stores all the time. Any missing value is marked with an NA.</li>
+                            <li>CPI - the consumer price index</li>
+                            <li>Unemployment - the unemployment rate</li>
+                            <li>IsHoliday - whether the week is a special holiday week</li>
+                        </ul>
+                        <p>Now, we get the zip files and create the datasets that we will use</p>
+                        <iframe src="https://jovian.ai/embed?url=https://jovian.ai/sergioalves94/walmart-store-sales-forecasting/v/49&cellId=14" title="Jovian Viewer" height="165" width="100%" style="margin 0 auto; max-width: 800px;" frameborder="0" scrolling="auto"></iframe>
+                        <iframe src="https://jovian.ai/embed?url=https://jovian.ai/sergioalves94/walmart-store-sales-forecasting/v/49&cellId=15" title="Jovian Viewer" height="185" width="100%" style="margin 0 auto; max-width: 800px;" frameborder="0" scrolling="auto"></iframe>
+                        <p>Before starting to work with the data, we can merge the files train, stores and features, in order to increase the number of input variables.</p>
+                        <iframe src="https://jovian.ai/embed?url=https://jovian.ai/sergioalves94/walmart-store-sales-forecasting/v/49&cellId=17" title="Jovian Viewer" height="125" width="100%" style="margin 0 auto; max-width: 800px;" frameborder="0" scrolling="auto"></iframe>
+                        
+                        <h2 class="section-heading">Data exploration</h2>
+                        <p>Let's have a look of our dataset</p>
+                        <iframe src="https://jovian.ai/embed?url=https://jovian.ai/sergioalves94/walmart-store-sales-forecasting/v/49&cellId=20" title="Jovian Viewer" height="364" width="100%" style="margin 0 auto; max-width: 800px;" frameborder="0" scrolling="auto"></iframe>
+                        <p>We can identify the following input variables:</p>
+                        <ul>
+                            <li>Store</li>
+                            <li>Dept</li>
+                            <li>Date</li>
+                            <li>IsHoliday</li>
+                            <li>Type</li>
+                            <li>Size</li>
+                            <li>Temperature</li>
+                            <li>Fuel_Price</li>
+                            <li>MarkDown1</li>
+                            <li>MarkDown2</li>
+                            <li>MarkDown3</li>
+                            <li>MarkDown4</li>
+                            <li>MarkDown5</li>
+                            <li>CPI</li>
+                            <li>Unemployment</li>
+                        </ul>
+                        <p>The Target variable is Weekly_Sales</p>
+                        <p>Now let's review some measures of central tendency.</p>
+                        <iframe src="https://jovian.ai/embed?url=https://jovian.ai/sergioalves94/walmart-store-sales-forecasting/v/49&cellId=23" title="Jovian Viewer" height="463" width="100%" style="margin 0 auto; max-width: 800px;" frameborder="0" scrolling="auto"></iframe>
+
+                        <h2 class="section-heading">Null Values</h2>
+                        <p>There are some null values, let's review them</p>
+                        <iframe src="https://jovian.ai/embed?url=https://jovian.ai/sergioalves94/walmart-store-sales-forecasting/v/49&cellId=26" title="Jovian Viewer" height="471" width="100%" style="margin 0 auto; max-width: 800px;" frameborder="0" scrolling="auto"></iframe>
+                        <p>We will drop the null values in the Data Manipulation section.</p>
+
+                        <h2 class="section-heading">Input Variables Correlation with the output feature Weekly_Sales</h2>
+                        <iframe src="https://jovian.ai/embed?url=https://jovian.ai/sergioalves94/walmart-store-sales-forecasting/v/49&cellId=29" title="Jovian Viewer" height="null" width="100%" style="margin 0 auto; max-width: 800px;" frameborder="0" scrolling="auto"></iframe>
+                        <p>By watching the correlation matrix, we can see that Weekly_Sales have a higher correlation with Store, Dept and Size.</p>
+                        <p>We will drop the variables with lower correlation in the Data Manipulation section.</p>
+
+                        <h2 class="section-heading">Data Manipulation</h2>
+                        <iframe src="https://jovian.ai/embed?url=https://jovian.ai/sergioalves94/walmart-store-sales-forecasting/v/49&cellId=33" title="Jovian Viewer" height="128" width="100%" style="margin 0 auto; max-width: 800px;" frameborder="0" scrolling="auto"></iframe>
+                        <p>Now, we will do the following steps:</p>
+                        <ul>
+                            <li>Remove null values from the markdown variables.</li>
+                            <li>Create variables for year, month and week, based on the date field.</li>
+                            <li>Remove the variables with low correlation.</li>
+                        </ul>
+                        <iframe src="https://jovian.ai/embed?url=https://jovian.ai/sergioalves94/walmart-store-sales-forecasting/v/49&cellId=35" title="Jovian Viewer" height="185" width="100%" style="margin 0 auto; max-width: 800px;" frameborder="0" scrolling="auto"></iframe>
+                        <p>We can move the target variable to the last column of the dataframe to ease the manipulation of the data.</p>
+                        <iframe src="https://jovian.ai/embed?url=https://jovian.ai/sergioalves94/walmart-store-sales-forecasting/v/49&cellId=37" title="Jovian Viewer" height="108" width="100%" style="margin 0 auto; max-width: 800px;" frameborder="0" scrolling="auto"></iframe>
+                        <p>Here, we identify inputs and target columns.</p>
+                        <iframe src="https://jovian.ai/embed?url=https://jovian.ai/sergioalves94/walmart-store-sales-forecasting/v/49&cellId=39" title="Jovian Viewer" height="108" width="100%" style="margin 0 auto; max-width: 800px;" frameborder="0" scrolling="auto"></iframe>
+                        <p>Now, we identify numeric and categorical columns.</p>
+                        <iframe src="https://jovian.ai/embed?url=https://jovian.ai/sergioalves94/walmart-store-sales-forecasting/v/49&cellId=41" title="Jovian Viewer" height="125" width="100%" style="margin 0 auto; max-width: 800px;" frameborder="0" scrolling="auto"></iframe>
+                        <p>Here, we impute (fill) and scale numeric columns.</p>
+                        <iframe src="https://jovian.ai/embed?url=https://jovian.ai/sergioalves94/walmart-store-sales-forecasting/v/49&cellId=43" title="Jovian Viewer" height="148" width="100%" style="margin 0 auto; max-width: 800px;" frameborder="0" scrolling="auto"></iframe>
+                        <p>We can only use numeric data to train our models, that's why we have to use a technique called "one-hot encoding" for our categorical columns.</p>
+                        <p>One hot encoding involves adding a new binary (0/1) column for each unique category of a categorical column.</p>
+                        <iframe src="https://jovian.ai/embed?url=https://jovian.ai/sergioalves94/walmart-store-sales-forecasting/v/49&cellId=45" title="Jovian Viewer" height="145" width="100%" style="margin 0 auto; max-width: 800px;" frameborder="0" scrolling="auto"></iframe>
+                        <p>Finally, let's split the dataset into a training and validation set. We'll use a randomly select 25% subset of the data for validation. Also, we'll use just the numeric and encoded columns, since the inputs to our model must be numbers.</p>
+                        <iframe src="https://jovian.ai/embed?url=https://jovian.ai/sergioalves94/walmart-store-sales-forecasting/v/49&cellId=47" title="Jovian Viewer" height="125" width="100%" style="margin 0 auto; max-width: 800px;" frameborder="0" scrolling="auto"></iframe>
+
+                        <h2 class="section-heading">Models</h2>
+                        <p>Now that we have our training and validation set, we will review two models of machine learning:</p>
+                        <ul>
+                            <li>Decision Tree</li>
+                            <li>Random Forest</li>
+                        </ul>
+                        <p>Based on the results, we will pick one of them.</p>
+
+                        <h3 class="section-heading">Decision Tree</h3>
+                        <p>A decision tree is a decision support tool that uses a tree-like model of decisions and their possible consequences, including chance event outcomes, resource costs, and utility. It is one way to display an algorithm that only contains conditional control statements.</p>
+                        <p>To create our decision tree model, we can use the function DecisionTreeRegressor.</p>
+                        <iframe src="https://jovian.ai/embed?url=https://jovian.ai/sergioalves94/walmart-store-sales-forecasting/v/49&cellId=53" title="Jovian Viewer" height="88" width="100%" style="margin 0 auto; max-width: 800px;" frameborder="0" scrolling="auto"></iframe>
+                        <iframe src="https://jovian.ai/embed?url=https://jovian.ai/sergioalves94/walmart-store-sales-forecasting/v/49&cellId=54" title="Jovian Viewer" height="88" width="100%" style="margin 0 auto; max-width: 800px;" frameborder="0" scrolling="auto"></iframe>
+                        <p>Now, we fit our model to the training data.</p>
+                        <iframe src="https://jovian.ai/embed?url=https://jovian.ai/sergioalves94/walmart-store-sales-forecasting/v/49&cellId=56" title="Jovian Viewer" height="194" width="100%" style="margin 0 auto; max-width: 800px;" frameborder="0" scrolling="auto"></iframe>
+                        <p>We generate predictions on the training and validation sets using the trained decision tree, and compute the Root Mean Squared Error (RMSE) loss.</p>
+                        <iframe src="https://jovian.ai/embed?url=https://jovian.ai/sergioalves94/walmart-store-sales-forecasting/v/49&cellId=58" title="Jovian Viewer" height="88" width="100%" style="margin 0 auto; max-width: 800px;" frameborder="0" scrolling="auto"></iframe>
+                        <iframe src="https://jovian.ai/embed?url=https://jovian.ai/sergioalves94/walmart-store-sales-forecasting/v/49&cellId=59" title="Jovian Viewer" height="88" width="100%" style="margin 0 auto; max-width: 800px;" frameborder="0" scrolling="auto"></iframe>
+                        <iframe src="https://jovian.ai/embed?url=https://jovian.ai/sergioalves94/walmart-store-sales-forecasting/v/49&cellId=60" title="Jovian Viewer" height="105" width="100%" style="margin 0 auto; max-width: 800px;" frameborder="0" scrolling="auto"></iframe>
+                        <iframe src="https://jovian.ai/embed?url=https://jovian.ai/sergioalves94/walmart-store-sales-forecasting/v/49&cellId=61" title="Jovian Viewer" height="null" width="100%" style="margin 0 auto; max-width: 800px;" frameborder="0" scrolling="auto"></iframe>
+                        <iframe src="https://jovian.ai/embed?url=https://jovian.ai/sergioalves94/walmart-store-sales-forecasting/v/49&cellId=62" title="Jovian Viewer" height="null" width="100%" style="margin 0 auto; max-width: 800px;" frameborder="0" scrolling="auto"></iframe>
+                        <iframe src="https://jovian.ai/embed?url=https://jovian.ai/sergioalves94/walmart-store-sales-forecasting/v/49&cellId=63" title="Jovian Viewer" height="138" width="100%" style="margin 0 auto; max-width: 800px;" frameborder="0" scrolling="auto"></iframe>
+                        <p>Here, we can see that the RMSE loss for our train data is 6.045479193458183e-20, and the RMSE loss for our validation data is 5441.340994336662</p>
+
+                        <h4 class="section-heading">Decision Tree Visualization</h3>
+                        <iframe src="https://jovian.ai/embed?url=https://jovian.ai/sergioalves94/walmart-store-sales-forecasting/v/49&cellId=66" title="Jovian Viewer" height="168" width="100%" style="margin 0 auto; max-width: 800px;" frameborder="0" scrolling="auto"></iframe>
+                        <p>Let's visualize the tree graphically using plot_tree.</p>
+                        <iframe src="https://jovian.ai/embed?url=https://jovian.ai/sergioalves94/walmart-store-sales-forecasting/v/49&cellId=68" title="Jovian Viewer" height="null" width="100%" style="margin 0 auto; max-width: 800px;" frameborder="0" scrolling="auto"></iframe>
+                        <p>Now, let Visualize the tree textually using export_text.</p>
+                        <iframe src="https://jovian.ai/embed?url=https://jovian.ai/sergioalves94/walmart-store-sales-forecasting/v/49&cellId=70" title="Jovian Viewer" height="88" width="100%" style="margin 0 auto; max-width: 800px;" frameborder="0" scrolling="auto"></iframe>
+                        <p>Here we can display the first few lines.</p>
+                        <iframe src="https://jovian.ai/embed?url=https://jovian.ai/sergioalves94/walmart-store-sales-forecasting/v/49&cellId=72" title="Jovian Viewer" height="800" width="100%" style="margin 0 auto; max-width: 800px;" frameborder="0" scrolling="auto"></iframe>
+
+                        <h4 class="section-heading">Decision Tree Feature Importance</h3>
+                        <p>Let's look at the weights assigned to different columns, to figure out which columns in the dataset are the most important.</p>
+                        <iframe src="https://jovian.ai/embed?url=https://jovian.ai/sergioalves94/walmart-store-sales-forecasting/v/49&cellId=75" title="Jovian Viewer" height="88" width="100%" style="margin 0 auto; max-width: 800px;" frameborder="0" scrolling="auto"></iframe>
+                        <iframe src="https://jovian.ai/embed?url=https://jovian.ai/sergioalves94/walmart-store-sales-forecasting/v/49&cellId=76" title="Jovian Viewer" height="null" width="100%" style="margin 0 auto; max-width: 800px;" frameborder="0" scrolling="auto"></iframe>
+                        <iframe src="https://jovian.ai/embed?url=https://jovian.ai/sergioalves94/walmart-store-sales-forecasting/v/49&cellId=77" title="Jovian Viewer" height="null" width="100%" style="margin 0 auto; max-width: 800px;" frameborder="0" scrolling="auto"></iframe>
+                        <iframe src="https://jovian.ai/embed?url=https://jovian.ai/sergioalves94/walmart-store-sales-forecasting/v/49&cellId=78" title="Jovian Viewer" height="393" width="100%" style="margin 0 auto; max-width: 800px;" frameborder="0" scrolling="auto"></iframe>
+                        <p>The variables Dept, Size, Store and Week are the most important for this model.</p>
+
+                        <h3 class="section-heading">Random Forests</h3>
+                        <p>Random forests are an ensemble learning method for classification, regression and other tasks that operates by constructing a multitude of decision trees at training time.</p>
+                        <p>For classification tasks, the output of the random forest is the class selected by most trees.</p>
+                        <p>For regression tasks, the mean or average prediction of the individual trees is returned.</p>
+                        <p>To create our random forest model, we can use the function RandomForestRegressor.</p>
+                        <iframe src="https://jovian.ai/embed?url=https://jovian.ai/sergioalves94/walmart-store-sales-forecasting/v/49&cellId=82" title="Jovian Viewer" height="88" width="100%" style="margin 0 auto; max-width: 800px;" frameborder="0" scrolling="auto"></iframe>
+                        <p>When I created the random forest with the default number of estimators (100), the jupyter notebook crashed due to a lack of memory, so let's start with a number of estimators of 10.</p>
+                        <iframe src="https://jovian.ai/embed?url=https://jovian.ai/sergioalves94/walmart-store-sales-forecasting/v/49&cellId=84" title="Jovian Viewer" height="88" width="100%" style="margin 0 auto; max-width: 800px;" frameborder="0" scrolling="auto"></iframe>
+                        <p>Now, we fit our model to the training data.</p>
+                        <iframe src="https://jovian.ai/embed?url=https://jovian.ai/sergioalves94/walmart-store-sales-forecasting/v/49&cellId=86" title="Jovian Viewer" height="194" width="100%" style="margin 0 auto; max-width: 800px;" frameborder="0" scrolling="auto"></iframe>
+                        <p>Now we generate predictions on the training and validation sets using the trained random forest, and compute the Root Mean Squared Error (RMSE) loss.</p>
+                        <iframe src="https://jovian.ai/embed?url=https://jovian.ai/sergioalves94/walmart-store-sales-forecasting/v/49&cellId=88" title="Jovian Viewer" height="88" width="100%" style="margin 0 auto; max-width: 800px;" frameborder="0" scrolling="auto"></iframe>
+                        <iframe src="https://jovian.ai/embed?url=https://jovian.ai/sergioalves94/walmart-store-sales-forecasting/v/49&cellId=89" title="Jovian Viewer" height="null" width="100%" style="margin 0 auto; max-width: 800px;" frameborder="0" scrolling="auto"></iframe>
+                        <iframe src="https://jovian.ai/embed?url=https://jovian.ai/sergioalves94/walmart-store-sales-forecasting/v/49&cellId=90" title="Jovian Viewer" height="null" width="100%" style="margin 0 auto; max-width: 800px;" frameborder="0" scrolling="auto"></iframe>
+                        <iframe src="https://jovian.ai/embed?url=https://jovian.ai/sergioalves94/walmart-store-sales-forecasting/v/49&cellId=91" title="Jovian Viewer" height="null" width="100%" style="margin 0 auto; max-width: 800px;" frameborder="0" scrolling="auto"></iframe>
+                        <iframe src="https://jovian.ai/embed?url=https://jovian.ai/sergioalves94/walmart-store-sales-forecasting/v/49&cellId=92" title="Jovian Viewer" height="null" width="100%" style="margin 0 auto; max-width: 800px;" frameborder="0" scrolling="auto"></iframe>
+                        <p>Here, we can see that the RMSE loss for our train data is 1620.993367981347, and the RMSE loss for our validation data is 3997.6712441772224</p>
+                        <p>The random forest model shows better results for the validation RMSE, so we will use that model.</p>
+
+                        <h2 class="section-heading">Hyperparameter Tuning</h2>
+                        <p>Let's define a helper function test_params which can test the given value of one or more hyperparameters.</p>
+                        <p>For this new random forest model, I will use a number of estimators of 16.</p>
+                        <iframe src="https://jovian.ai/embed?url=https://jovian.ai/sergioalves94/walmart-store-sales-forecasting/v/49&cellId=97" title="Jovian Viewer" height="null" width="100%" style="margin 0 auto; max-width: 800px;" frameborder="0" scrolling="auto"></iframe>
+                        <p>Let's also define a helper function to test and plot different values of a single parameter.</p>
+                        <iframe src="https://jovian.ai/embed?url=https://jovian.ai/sergioalves94/walmart-store-sales-forecasting/v/49&cellId=99" title="Jovian Viewer" height="348" width="100%" style="margin 0 auto; max-width: 800px;" frameborder="0" scrolling="auto"></iframe>
+                        <iframe src="https://jovian.ai/embed?url=https://jovian.ai/sergioalves94/walmart-store-sales-forecasting/v/49&cellId=100" title="Jovian Viewer" height="118" width="100%" style="margin 0 auto; max-width: 800px;" frameborder="0" scrolling="auto"></iframe>
+                        <p>We can see better results with a higher number of estimators.</p>
+                        <iframe src="https://jovian.ai/embed?url=https://jovian.ai/sergioalves94/walmart-store-sales-forecasting/v/49&cellId=102" title="Jovian Viewer" height="482" width="100%" style="margin 0 auto; max-width: 800px;" frameborder="0" scrolling="auto"></iframe>
+                        <iframe src="https://jovian.ai/embed?url=https://jovian.ai/sergioalves94/walmart-store-sales-forecasting/v/49&cellId=103" title="Jovian Viewer" height="118" width="100%" style="margin 0 auto; max-width: 800px;" frameborder="0" scrolling="auto"></iframe>
+                        <p>Here, we can see how the RMSE increases with the min_samples_leaf parameter, so we will use the default value (1).</p>
+                        <iframe src="https://jovian.ai/embed?url=https://jovian.ai/sergioalves94/walmart-store-sales-forecasting/v/49&cellId=105" title="Jovian Viewer" height="null" width="100%" style="margin 0 auto; max-width: 800px;" frameborder="0" scrolling="auto"></iframe>
+                        <iframe src="https://jovian.ai/embed?url=https://jovian.ai/sergioalves94/walmart-store-sales-forecasting/v/49&cellId=106" title="Jovian Viewer" height="null" width="100%" style="margin 0 auto; max-width: 800px;" frameborder="0" scrolling="auto"></iframe>
+                        <p>The RMSE decreases with the max_leaf_nodes parameter, so we will use the default value (none).</p>
+                        <iframe src="https://jovian.ai/embed?url=https://jovian.ai/sergioalves94/walmart-store-sales-forecasting/v/49&cellId=108" title="Jovian Viewer" height="482" width="100%" style="margin 0 auto; max-width: 800px;" frameborder="0" scrolling="auto"></iframe>
+                        <iframe src="https://jovian.ai/embed?url=https://jovian.ai/sergioalves94/walmart-store-sales-forecasting/v/49&cellId=109" title="Jovian Viewer" height="118" width="100%" style="margin 0 auto; max-width: 800px;" frameborder="0" scrolling="auto"></iframe>
+                        <p>The RMSE decreases with the max_depth parameter, so we will use the default value (none).</p>
+
+                        <h2 class="section-heading">Training the Best Model</h2>
+                        <p>We create a new Random Forest model with custom hyperparameters.</p>
+                        <iframe src="https://jovian.ai/embed?url=https://jovian.ai/sergioalves94/walmart-store-sales-forecasting/v/49&cellId=113" title="Jovian Viewer" height="105" width="100%" style="margin 0 auto; max-width: 800px;" frameborder="0" scrolling="auto"></iframe>
+                        <p>Now we train the model.</p>
+                        <iframe src="https://jovian.ai/embed?url=https://jovian.ai/sergioalves94/walmart-store-sales-forecasting/v/49&cellId=115" title="Jovian Viewer" height="118" width="100%" style="margin 0 auto; max-width: 800px;" frameborder="0" scrolling="auto"></iframe>
+                        <p>Now we generate predictions for the final model.</p>
+                        <iframe src="https://jovian.ai/embed?url=https://jovian.ai/sergioalves94/walmart-store-sales-forecasting/v/49&cellId=117" title="Jovian Viewer" height="88" width="100%" style="margin 0 auto; max-width: 800px;" frameborder="0" scrolling="auto"></iframe>
+                        <iframe src="https://jovian.ai/embed?url=https://jovian.ai/sergioalves94/walmart-store-sales-forecasting/v/49&cellId=118" title="Jovian Viewer" height="null" width="100%" style="margin 0 auto; max-width: 800px;" frameborder="0" scrolling="auto"></iframe>
+                        <iframe src="https://jovian.ai/embed?url=https://jovian.ai/sergioalves94/walmart-store-sales-forecasting/v/49&cellId=119" title="Jovian Viewer" height="null" width="100%" style="margin 0 auto; max-width: 800px;" frameborder="0" scrolling="auto"></iframe>
+                        <iframe src="https://jovian.ai/embed?url=https://jovian.ai/sergioalves94/walmart-store-sales-forecasting/v/49&cellId=120" title="Jovian Viewer" height="null" width="100%" style="margin 0 auto; max-width: 800px;" frameborder="0" scrolling="auto"></iframe>
+                        <iframe src="https://jovian.ai/embed?url=https://jovian.ai/sergioalves94/walmart-store-sales-forecasting/v/49&cellId=121" title="Jovian Viewer" height="null" width="100%" style="margin 0 auto; max-width: 800px;" frameborder="0" scrolling="auto"></iframe>
+                        <p>Here, we can see a decrease for the RMSE loss.</p>
+
+                        <h2 class="section-heading">Random Forest Feature Importance</h2>
+                        <p>Let's look at the weights assigned to different columns, to figure out which columns in the dataset are the most important for this model.</p>
+                        <iframe src="https://jovian.ai/embed?url=https://jovian.ai/sergioalves94/walmart-store-sales-forecasting/v/49&cellId=125" title="Jovian Viewer" height="null" width="100%" style="margin 0 auto; max-width: 800px;" frameborder="0" scrolling="auto"></iframe>
+                        <iframe src="https://jovian.ai/embed?url=https://jovian.ai/sergioalves94/walmart-store-sales-forecasting/v/49&cellId=126" title="Jovian Viewer" height="null" width="100%" style="margin 0 auto; max-width: 800px;" frameborder="0" scrolling="auto"></iframe>
+                        <iframe src="https://jovian.ai/embed?url=https://jovian.ai/sergioalves94/walmart-store-sales-forecasting/v/49&cellId=127" title="Jovian Viewer" height="null" width="100%" style="margin 0 auto; max-width: 800px;" frameborder="0" scrolling="auto"></iframe>
+                        <p>The variables Dept, Size, Store and Week are the most important for this model.</p>
+
+                        <h2 class="section-heading">Making Predictions on the Test Set</h2>
+                        <p>Let's make predictions on the test set provided with the data.</p>
+                        <p>First, we need to reapply all the preprocessing steps.</p>
+                        <iframe src="https://jovian.ai/embed?url=https://jovian.ai/sergioalves94/walmart-store-sales-forecasting/v/49&cellId=131" title="Jovian Viewer" height="null" width="100%" style="margin 0 auto; max-width: 800px;" frameborder="0" scrolling="auto"></iframe>
+                        <iframe src="https://jovian.ai/embed?url=https://jovian.ai/sergioalves94/walmart-store-sales-forecasting/v/49&cellId=132" title="Jovian Viewer" height="97" width="100%" style="margin 0 auto; max-width: 800px;" frameborder="0" scrolling="auto"></iframe>
+                        <iframe src="https://jovian.ai/embed?url=https://jovian.ai/sergioalves94/walmart-store-sales-forecasting/v/49&cellId=133" title="Jovian Viewer" height="null" width="100%" style="margin 0 auto; max-width: 800px;" frameborder="0" scrolling="auto"></iframe>
+                        <iframe src="https://jovian.ai/embed?url=https://jovian.ai/sergioalves94/walmart-store-sales-forecasting/v/49&cellId=134" title="Jovian Viewer" height="null" width="100%" style="margin 0 auto; max-width: 800px;" frameborder="0" scrolling="auto"></iframe>
+                        <p>We can now make predictions using our final model.</p>
+                        <iframe src="https://jovian.ai/embed?url=https://jovian.ai/sergioalves94/walmart-store-sales-forecasting/v/49&cellId=136" title="Jovian Viewer" height="88" width="100%" style="margin 0 auto; max-width: 800px;" frameborder="0" scrolling="auto"></iframe>
+                        <p>Let's replace the values of the Weekly_Sales column with our predictions.</p>
+                        <iframe src="https://jovian.ai/embed?url=https://jovian.ai/sergioalves94/walmart-store-sales-forecasting/v/49&cellId=138" title="Jovian Viewer" height="88" width="100%" style="margin 0 auto; max-width: 800px;" frameborder="0" scrolling="auto"></iframe>
+                        <p>Let's save it as a CSV file and download it.</p>
+                        <iframe src="https://jovian.ai/embed?url=https://jovian.ai/sergioalves94/walmart-store-sales-forecasting/v/49&cellId=140" title="Jovian Viewer" height="88" width="100%" style="margin 0 auto; max-width: 800px;" frameborder="0" scrolling="auto"></iframe>
+                        <iframe src="https://jovian.ai/embed?url=https://jovian.ai/sergioalves94/walmart-store-sales-forecasting/v/49&cellId=141" title="Jovian Viewer" height="167" width="100%" style="margin 0 auto; max-width: 800px;" frameborder="0" scrolling="auto"></iframe>
+
+                        <h2 class="section-heading">Making Predictions on Single Inputs</h2>
+                        <iframe src="https://jovian.ai/embed?url=https://jovian.ai/sergioalves94/walmart-store-sales-forecasting/v/49&cellId=143" title="Jovian Viewer" height="205" width="100%" style="margin 0 auto; max-width: 800px;" frameborder="0" scrolling="auto"></iframe>
+                        <iframe src="https://jovian.ai/embed?url=https://jovian.ai/sergioalves94/walmart-store-sales-forecasting/v/49&cellId=144" title="Jovian Viewer" height="null" width="100%" style="margin 0 auto; max-width: 800px;" frameborder="0" scrolling="auto"></iframe>
+                        <iframe src="https://jovian.ai/embed?url=https://jovian.ai/sergioalves94/walmart-store-sales-forecasting/v/49&cellId=145" title="Jovian Viewer" height="null" width="100%" style="margin 0 auto; max-width: 800px;" frameborder="0" scrolling="auto"></iframe>
+                        <iframe src="https://jovian.ai/embed?url=https://jovian.ai/sergioalves94/walmart-store-sales-forecasting/v/49&cellId=146" title="Jovian Viewer" height="null" width="100%" style="margin 0 auto; max-width: 800px;" frameborder="0" scrolling="auto"></iframe>
+
+                        <h2 class="section-heading">Saving the Model</h2>
+                        <iframe src="https://jovian.ai/embed?url=https://jovian.ai/sergioalves94/walmart-store-sales-forecasting/v/49&cellId=148" title="Jovian Viewer" height="88" width="100%" style="margin 0 auto; max-width: 800px;" frameborder="0" scrolling="auto"></iframe>
+                        <iframe src="https://jovian.ai/embed?url=https://jovian.ai/sergioalves94/walmart-store-sales-forecasting/v/49&cellId=149" title="Jovian Viewer" height="288" width="100%" style="margin 0 auto; max-width: 800px;" frameborder="0" scrolling="auto"></iframe>
+                        <iframe src="https://jovian.ai/embed?url=https://jovian.ai/sergioalves94/walmart-store-sales-forecasting/v/49&cellId=150" title="Jovian Viewer" height="118" width="100%" style="margin 0 auto; max-width: 800px;" frameborder="0" scrolling="auto"></iframe>
+
+                        <h2 class="section-heading">References</h2>
+                        <p>Check out the following resources to learn more:</p>
+                        <ul>
+                            <li><a href="https://www.kaggle.com/c/walmart-recruiting-store-sales-forecasting" target="_BLANK">Walmart - Store Sales Forecasting</a></li>
+                            <li><a href="https://scikit-learn.org/stable/index.html" target="_BLANK">Scikit-learn documentation</a></li>
+                            <li><a href="https://scikit-learn.org/stable/modules/generated/sklearn.tree.DecisionTreeRegressor.html" target="_BLANK">Scikit-learn DecisionTreeRegressor</a></li>
+                            <li><a href="https://scikit-learn.org/stable/modules/generated/sklearn.ensemble.RandomForestRegressor.html" target="_BLANK">Scikit-learn RandomForestRegressor</a></li>
+                            <li><a href="https://pandas.pydata.org/docs/user_guide/index.html" target="_BLANK">Pandas</a></li>
+                            <li><a href="https://www.kaggle.com/andredornas/tp2-walmart-sales-forecast" target="_BLANK">TP2 - Walmart Sales Forecast</a></li>
+                            <li><a href="https://www.kaggle.com/avelinocaio/walmart-store-sales-forecasting" target="_BLANK">Walmart - Store Sales Forecasting</a></li>
+                        </ul>
+                </div>
+            </div>
+        </article>
+        <!-- Footer-->
+        <footer class="border-top">
+            <div class="container px-4 px-lg-5">
+                <div class="row gx-4 gx-lg-5 justify-content-center">
+                    <div class="col-md-10 col-lg-8 col-xl-7">
+                        <ul class="list-inline text-center">
+                            <li class="list-inline-item">
+                                <a href="https://twitter.com/SergioAlves1994" target="_BLANK">
+                                    <span class="fa-stack fa-lg">
+                                        <i class="fas fa-circle fa-stack-2x"></i>
+                                        <i class="fab fa-twitter fa-stack-1x fa-inverse"></i>
+                                    </span>
+                                </a>
+                            </li>
+                            <li class="list-inline-item">
+                                <a href="https://www.linkedin.com/in/sergio-alves-958bb453/" target="_BLANK">
+                                    <span class="fa-stack fa-lg">
+                                        <i class="fas fa-circle fa-stack-2x"></i>
+                                        <i class="fab fa-linkedin-in fa-stack-1x fa-inverse"></i>
+                                    </span>
+                                </a>
+                            </li>
+                            <li class="list-inline-item">
+                                <a href="https://github.com/salves94" target="_BLANK">
+                                    <span class="fa-stack fa-lg">
+                                        <i class="fas fa-circle fa-stack-2x"></i>
+                                        <i class="fab fa-github fa-stack-1x fa-inverse"></i>
+                                    </span>
+                                </a>
+                            </li>
+                            <li class="list-inline-item">
+                                <a href="https://medium.com/@sergioalves94/" target="_BLANK">
+                                    <span class="fa-stack fa-lg">
+                                        <i class="fas fa-circle fa-stack-2x"></i>
+                                        <i class="fab fa-medium fa-stack-1x fa-inverse"></i>
+                                    </span>
+                                </a>
+                            </li>
+                        </ul>
+                        <div class="small text-center text-muted fst-italic">Copyright &copy; SART 2021</div>
+                    </div>
+                </div>
+            </div>
+        </footer>
+        <!-- Bootstrap core JS-->
+        <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js"></script>
+        <!-- Core theme JS-->
+        <script src="js/scripts.js"></script>
+    </body>
+</html>

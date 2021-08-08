@@ -1,0 +1,182 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="utf-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
+        <meta name="description" content="" />
+        <meta name="author" content="" />
+        <title>Sergio Alves</title>
+        <link rel="icon" type="image/x-icon" href="assets/favicon.ico" />
+        <!-- Font Awesome icons (free version)-->
+        <script src="https://use.fontawesome.com/releases/v5.15.3/js/all.js" crossorigin="anonymous"></script>
+        <!-- Google fonts-->
+        <link href="https://fonts.googleapis.com/css?family=Lora:400,700,400italic,700italic" rel="stylesheet" type="text/css" />
+        <link href="https://fonts.googleapis.com/css?family=Open+Sans:300italic,400italic,600italic,700italic,800italic,400,300,600,700,800" rel="stylesheet" type="text/css" />
+        <!-- Core theme CSS (includes Bootstrap)-->
+        <link href="css/styles.css" rel="stylesheet" />
+    </head>
+    <body>
+        <!-- Navigation-->
+        <nav class="navbar navbar-expand-lg navbar-light" id="mainNav">
+            <div class="container px-4 px-lg-5">
+                <a class="navbar-brand" href="index.html">Sergio Alves</a>
+                <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarResponsive" aria-controls="navbarResponsive" aria-expanded="false" aria-label="Toggle navigation">
+                    Menu
+                    <i class="fas fa-bars"></i>
+                </button>
+                <div class="collapse navbar-collapse" id="navbarResponsive">
+                    <ul class="navbar-nav ms-auto py-4 py-lg-0">
+                        <li class="nav-item"><a class="nav-link px-lg-3 py-3 py-lg-4" href="index.html">Home</a></li>
+                        <li class="nav-item"><a class="nav-link px-lg-3 py-3 py-lg-4" href="about.html">About</a></li>
+                    </ul>
+                </div>
+            </div>
+        </nav>
+        <!-- Page Header-->
+        <header class="masthead" style="background-image: url('assets/img/post-1-bg.png')">
+            <div class="container position-relative px-4 px-lg-5">
+                <div class="row gx-4 gx-lg-5 justify-content-center">
+                    <div class="col-md-10 col-lg-8 col-xl-7">
+                        <div class="post-heading">
+                            <h1>5 Useful tensor functions for PyTorch</h1>
+                            <h2 class="subheading">A Brief Introduction to Pytorch</h2>
+                            <span class="meta">
+                                Posted by
+                                <a href="#!">Sergio Alves</a>
+                                on May 28, 2020
+                            </span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </header>
+        <!-- Post Content-->
+        <article class="mb-4">
+            <div class="container px-4 px-lg-5">
+                <div class="row gx-4 gx-lg-5 justify-content-center">
+                    <div class="col-md-10 col-lg-8 col-xl-7">
+                        <p>Lately, PyTorch has gain a lot of popularity among the data science community, as one of the most used Deep Learning libraries.</p>
+                        <p>This library is based on tensors, which can be understood as a n-dimension matrix from which you can perform mathematical operations and build Deep Learning Models.</p>
+                        <p>In this article, I will introduce you to five useful tensor functions that you can use in PyTorch.</p>
+                        <h2 class="section-heading">PyTorch Functions</h2>
+                        <ul>
+                            <li>torch.Tensor.expand(*sizes)</li>
+                            <li>torch.reshape(input, shape)</li>
+                            <li>torch.add(input, other, out=None)</li>
+                            <li>torch.t(input)</li>
+                            <li>torch.numel(input)</li>
+                        </ul>
+                        <iframe src="https://jovian.ai/embed?url=https://jovian.ai/sergioalves94/01-tensor-operations/v/1&cellId=1" title="Jovian Viewer" height="108" width="100%" style="margin 0 auto; max-width: 800px;" frameborder="0" scrolling="auto"></iframe>
+
+                        <h2 class="section-heading">torch.Tensor.expand(*sizes)</h2>
+                        <p>This function allows you to set the quantity of elements per dimension</p>
+                        <iframe src="https://jovian.ai/embed?url=https://jovian.ai/sergioalves94/01-tensor-operations/v/1&cellId=3" title="Jovian Viewer" height="270" width="100%" style="margin 0 auto; max-width: 800px;" frameborder="0" scrolling="auto"></iframe>
+                        <p>Here, we created a tensor "x" with 3 rows and 1 column. Then, we applied to our tensor the expand() function to increase it's number of columns to 4. As you can see, the columns were replicated 3 times.</p>
+                        <iframe src="https://jovian.ai/embed?url=https://jovian.ai/sergioalves94/01-tensor-operations/v/1&cellId=5" title="Jovian Viewer" height="169" width="100%" style="margin 0 auto; max-width: 800px;" frameborder="0" scrolling="auto"></iframe>
+                        <p>This example gives the same output, but instead of using "3" as the first argument, we used "-1" which assings the original size of that dimension</p>
+                        <iframe src="https://jovian.ai/embed?url=https://jovian.ai/sergioalves94/01-tensor-operations/v/1&cellId=7" title="Jovian Viewer" height="256" width="100%" style="margin 0 auto; max-width: 800px;" frameborder="0" scrolling="auto"></iframe>
+                        <p>Here, we can see what happens when we try to add more dimensions to the tensor from the expand method. We get an error because that can't be done by using that method.</p>
+                        <p>This function is very useful when you want to reshape a tensor to make it compatible with other tensors for arithmetic operations. Two tensors are compatible when for each dimension pair, they are equal.</p>
+
+                        <h2 class="section-heading">torch.reshape(input, shape)</h2>
+                        <p>This function returns a tensor with the same data and number of elements as input, but with the specified shape. A single dimension may be -1, in which case it’s inferred from the remaining dimensions and the number of elements in input.</p>
+                        <iframe src="https://jovian.ai/embed?url=https://jovian.ai/sergioalves94/01-tensor-operations/v/1&cellId=11" title="Jovian Viewer" height="211" width="100%" style="margin 0 auto; max-width: 800px;" frameborder="0" scrolling="auto"></iframe>
+                        <p>Here, we created a 1-dimension tensor with 4 elements. Then we used the reshape function to turn it into a 2-dimensions tensor, with 2 rows and 2 columns.</p>
+                        <iframe src="https://jovian.ai/embed?url=https://jovian.ai/sergioalves94/01-tensor-operations/v/1&cellId=13" title="Jovian Viewer" height="214" width="100%" style="margin 0 auto; max-width: 800px;" frameborder="0" scrolling="auto"></iframe>
+                        <p>In this example, we created a 2-dimensions tensor with 4 elements. Then we used the reshape function to turn it into a 1-dimension tensor.</p>
+                        <iframe src="https://jovian.ai/embed?url=https://jovian.ai/sergioalves94/01-tensor-operations/v/1&cellId=15" title="Jovian Viewer" height="348" width="100%" style="margin 0 auto; max-width: 800px;" frameborder="0" scrolling="auto"></iframe>
+                        <p>If you use a shape that is incompatible with the amount of elements of the tensor, you will get an error like this one.</p>
+                        <p>As the previous function, this one is very useful when you want to reshape a tensor to make it compatible with other tensors for arithmetic operations.</p>
+
+                        <h2 class="section-heading">torch.add(input, other, alpha=1, out=None)</h2>
+                        <p>Adds <i>other</i> (it can be an escalar or a tensor) to each element of the tensor input and returns a new resulting tensor.</p>
+                        <p>When alpha is set, it works as the scalar multiplier for <i>other</i></p>
+                        <iframe src="https://jovian.ai/embed?url=https://jovian.ai/sergioalves94/01-tensor-operations/v/1&cellId=19" title="Jovian Viewer" height="210" width="100%" style="margin 0 auto; max-width: 800px;" frameborder="0" scrolling="auto"></iframe>
+                        <p>In this case, we are adding a scalar (20) to the tensor by using the add() function.</p>
+                        <iframe src="https://jovian.ai/embed?url=https://jovian.ai/sergioalves94/01-tensor-operations/v/1&cellId=21" title="Jovian Viewer" height="408" width="100%" style="margin 0 auto; max-width: 800px;" frameborder="0" scrolling="auto"></iframe>
+                        <p>In this example, we are adding the tensor a with the product of the scalar alpha times the tensor b</p>
+                        <iframe src="https://jovian.ai/embed?url=https://jovian.ai/sergioalves94/01-tensor-operations/v/1&cellId=23" title="Jovian Viewer" height="348" width="100%" style="margin 0 auto; max-width: 800px;" frameborder="0" scrolling="auto"></iframe>
+                        <p>When you are doing arithmetic operations with tensors, make sure to do it with scalars or tensors. In this case, we can see that we get an error when we try to add a tensor with a tuple.</p>
+                        <p>This is one of the functions that we will use when we want to do arithmetic operations over tensors</p>
+
+                        <h2 class="section-heading">torch.t(input)</h2>
+                        <p>Expects input to be <= 2-D tensor and transposes dimensions 0 and 1.</p>
+                        <p>0-D and 1-D tensors are returned as is. When input is a 2-D tensor this is equivalent to transpose(input, 0, 1).</p>
+                        <iframe src="https://jovian.ai/embed?url=https://jovian.ai/sergioalves94/01-tensor-operations/v/1&cellId=27" title="Jovian Viewer" height="190" width="100%" style="margin 0 auto; max-width: 800px;" frameborder="0" scrolling="auto"></iframe>
+                        <p>When you get the transpose of a 0-dimension tensor, you obtain the same tensor</p>
+                        <iframe src="https://jovian.ai/embed?url=https://jovian.ai/sergioalves94/01-tensor-operations/v/1&cellId=29" title="Jovian Viewer" height="190" width="100%" style="margin 0 auto; max-width: 800px;" frameborder="0" scrolling="auto"></iframe>
+                        <p>When you get the transpose of a 2-dimensions tensor, you obtain a switched version of its rows with its columns.</p>
+                        <iframe src="https://jovian.ai/embed?url=https://jovian.ai/sergioalves94/01-tensor-operations/v/1&cellId=33" title="Jovian Viewer" height="472" width="100%" style="margin 0 auto; max-width: 800px;" frameborder="0" scrolling="auto"></iframe>
+                        <p>In this example, we can see that if you transpose a tensor with 3 or more dimmensions, you will get an error.</p>
+                        <p>We can get the transpose of a tensor when we want to reveal some properties of the linear transformation, such as symmetry.</p>
+
+                        <h2 class="section-heading">torch.numel(input)</h2>
+                        <p>Returns the total number of elements in the input tensor.</p>
+                        <iframe src="https://jovian.ai/embed?url=https://jovian.ai/sergioalves94/01-tensor-operations/v/1&cellId=37" title="Jovian Viewer" height="800" width="100%" style="margin 0 auto; max-width: 800px;" frameborder="0" scrolling="auto"></iframe>
+                        <p>In this example, we created a 5-dimensions tensor, and obtained the number of elements</p>}
+                        <iframe src="https://jovian.ai/embed?url=https://jovian.ai/sergioalves94/01-tensor-operations/v/1&cellId=39" title="Jovian Viewer" height="262" width="100%" style="margin 0 auto; max-width: 800px;" frameborder="0" scrolling="auto"></iframe>
+                        <p>Here, we created a 2-dimensions tensor, and obtained the number of elements</p>
+                        <iframe src="https://jovian.ai/embed?url=https://jovian.ai/sergioalves94/01-tensor-operations/v/1&cellId=41" title="Jovian Viewer" height="328" width="100%" style="margin 0 auto; max-width: 800px;" frameborder="0" scrolling="auto"></iframe>
+                        <p>Make sure to pass a tensor as the parameter of the numel function. Otherwise, you will get an error like this.</p>
+                        <p>We can use the numel function when we want to know the number of elements we are handling in a tensor</p>
+
+                        <h2 class="section-heading">Conclusion</h2>
+                        <p>As you can see from this brief article, PyTorch has many features that helps you to handle tensors. There are many more functionalities that you can review from the PyTorch official documentation.</p>
+
+                        <h2 class="section-heading">Reference Links</h2>
+                        <ul>
+                            <li><a href="https://pytorch.org/docs/stable/tensors.html" target="_BLANK">Official documentation for torch.Tensor</a></li>
+                        </ul>
+                </div>
+            </div>
+        </article>
+        <!-- Footer-->
+        <footer class="border-top">
+            <div class="container px-4 px-lg-5">
+                <div class="row gx-4 gx-lg-5 justify-content-center">
+                    <div class="col-md-10 col-lg-8 col-xl-7">
+                        <ul class="list-inline text-center">
+                            <li class="list-inline-item">
+                                <a href="https://twitter.com/SergioAlves1994" target="_BLANK">
+                                    <span class="fa-stack fa-lg">
+                                        <i class="fas fa-circle fa-stack-2x"></i>
+                                        <i class="fab fa-twitter fa-stack-1x fa-inverse"></i>
+                                    </span>
+                                </a>
+                            </li>
+                            <li class="list-inline-item">
+                                <a href="https://www.linkedin.com/in/sergio-alves-958bb453/" target="_BLANK">
+                                    <span class="fa-stack fa-lg">
+                                        <i class="fas fa-circle fa-stack-2x"></i>
+                                        <i class="fab fa-linkedin-in fa-stack-1x fa-inverse"></i>
+                                    </span>
+                                </a>
+                            </li>
+                            <li class="list-inline-item">
+                                <a href="https://github.com/salves94" target="_BLANK">
+                                    <span class="fa-stack fa-lg">
+                                        <i class="fas fa-circle fa-stack-2x"></i>
+                                        <i class="fab fa-github fa-stack-1x fa-inverse"></i>
+                                    </span>
+                                </a>
+                            </li>
+                            <li class="list-inline-item">
+                                <a href="https://medium.com/@sergioalves94/" target="_BLANK">
+                                    <span class="fa-stack fa-lg">
+                                        <i class="fas fa-circle fa-stack-2x"></i>
+                                        <i class="fab fa-medium fa-stack-1x fa-inverse"></i>
+                                    </span>
+                                </a>
+                            </li>
+                        </ul>
+                        <div class="small text-center text-muted fst-italic">Copyright &copy; SART 2021</div>
+                    </div>
+                </div>
+            </div>
+        </footer>
+        <!-- Bootstrap core JS-->
+        <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js"></script>
+        <!-- Core theme JS-->
+        <script src="js/scripts.js"></script>
+    </body>
+</html>

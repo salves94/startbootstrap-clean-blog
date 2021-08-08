@@ -1,0 +1,315 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="utf-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
+        <meta name="description" content="" />
+        <meta name="author" content="" />
+        <title>Sergio Alves</title>
+        <link rel="icon" type="image/x-icon" href="assets/favicon.ico" />
+        <!-- Font Awesome icons (free version)-->
+        <script src="https://use.fontawesome.com/releases/v5.15.3/js/all.js" crossorigin="anonymous"></script>
+        <!-- Google fonts-->
+        <link href="https://fonts.googleapis.com/css?family=Lora:400,700,400italic,700italic" rel="stylesheet" type="text/css" />
+        <link href="https://fonts.googleapis.com/css?family=Open+Sans:300italic,400italic,600italic,700italic,800italic,400,300,600,700,800" rel="stylesheet" type="text/css" />
+        <!-- Core theme CSS (includes Bootstrap)-->
+        <link href="css/styles.css" rel="stylesheet" />
+    </head>
+    <body>
+        <!-- Navigation-->
+        <nav class="navbar navbar-expand-lg navbar-light" id="mainNav">
+            <div class="container px-4 px-lg-5">
+                <a class="navbar-brand" href="index.html">Sergio Alves</a>
+                <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarResponsive" aria-controls="navbarResponsive" aria-expanded="false" aria-label="Toggle navigation">
+                    Menu
+                    <i class="fas fa-bars"></i>
+                </button>
+                <div class="collapse navbar-collapse" id="navbarResponsive">
+                    <ul class="navbar-nav ms-auto py-4 py-lg-0">
+                        <li class="nav-item"><a class="nav-link px-lg-3 py-3 py-lg-4" href="index.html">Home</a></li>
+                        <li class="nav-item"><a class="nav-link px-lg-3 py-3 py-lg-4" href="about.html">About</a></li>
+                    </ul>
+                </div>
+            </div>
+        </nav>
+        <!-- Page Header-->
+        <header class="masthead" style="background-image: url('assets/img/post-6-bg.jpeg')">
+            <div class="container position-relative px-4 px-lg-5">
+                <div class="row gx-4 gx-lg-5 justify-content-center">
+                    <div class="col-md-10 col-lg-8 col-xl-7">
+                        <div class="post-heading">
+                            <h1>Hotel Booking Demand EDA</h1>
+                            <h2 class="subheading">An Exploratory Data Analysis Approach</h2>
+                            <span class="meta">
+                                Posted by
+                                <a href="#!">Sergio Alves</a>
+                                on September 23, 2020
+                            </span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </header>
+        <!-- Post Content-->
+        <article class="mb-4">
+            <div class="container px-4 px-lg-5">
+                <div class="row gx-4 gx-lg-5 justify-content-center">
+                    <div class="col-md-10 col-lg-8 col-xl-7">
+                        <p>For this EDA project, I will use the “Hotel booking demand” dataset, which can be found <a href="https://www.kaggle.com/jessemostipak/hotel-booking-demand" target="_BLANK">here</a>.</p>
+                        <p>This data set contains booking information for a city hotel and a resort hotel, and includes information such as when the booking was made, length of stay, the number of adults, children, and/or babies, and the number of available parking spaces, among other things.</p>
+                        <p>All personally identifying information has been removed from the data.</p>
+                        <p>The data is originally from the article Hotel Booking Demand Datasets, written by Nuno Antonio, Ana Almeida, and Luis Nunes for Data in Brief, Volume 22, February 2019.</p>
+                        <p>The data was downloaded and cleaned by Thomas Mock and Antoine Bichat for #TidyTuesday during the week of February 11th, 2020.</p>
+                        <h2 class="section-heading">Data Preparation and Cleaning</h2>
+                        <p>The first step is to import the main libraries that we will use for this project.</p>
+                        <iframe src="https://jovian.ai/embed?url=https://jovian.ai/sergioalves94/hotel-booking-demand-eda/v/52&cellId=6" title="Jovian Viewer" height="208" width="100%" style="margin 0 auto; max-width: 800px;" frameborder="0" scrolling="auto"></iframe>
+                        <p>Now, we download the dataset to use it as a pandas dataframe.</p>
+                        <iframe src="https://jovian.ai/embed?url=https://jovian.ai/sergioalves94/hotel-booking-demand-eda/v/52&cellId=8" title="Jovian Viewer" height="125" width="100%" style="margin 0 auto; max-width: 800px;" frameborder="0" scrolling="auto"></iframe>
+                        <p>We check how many rows has the dataset.</p>
+                        <iframe src="https://jovian.ai/embed?url=https://jovian.ai/sergioalves94/hotel-booking-demand-eda/v/52&cellId=10" title="Jovian Viewer" height="118" width="100%" style="margin 0 auto; max-width: 800px;" frameborder="0" scrolling="auto"></iframe>
+                        <p>Very good! now we know that our dataset has 119390 rows.</p>
+                        <p>Now let's check how many cells are missing from our dataset.</p>
+                        <iframe src="https://jovian.ai/embed?url=https://jovian.ai/sergioalves94/hotel-booking-demand-eda/v/52&cellId=12" title="Jovian Viewer" height="784" width="100%" style="margin 0 auto; max-width: 800px;" frameborder="0" scrolling="auto"></iframe>
+                        <p>We can see that we have 4 columns with missing values. let's check these values as percentages.</p>
+                        <iframe src="https://jovian.ai/embed?url=https://jovian.ai/sergioalves94/hotel-booking-demand-eda/v/52&cellId=14" title="Jovian Viewer" height="784" width="100%" style="margin 0 auto; max-width: 800px;" frameborder="0" scrolling="auto"></iframe>
+                        <p>The columns “agent” and “company” have a high percentage of missing values. As these columns won’t be relevant for our analysis, we can delete them.</p>
+                        <iframe src="https://jovian.ai/embed?url=https://jovian.ai/sergioalves94/hotel-booking-demand-eda/v/52&cellId=16" title="Jovian Viewer" height="88" width="100%" style="margin 0 auto; max-width: 800px;" frameborder="0" scrolling="auto"></iframe>
+                        <p>The columns “children” and “country” have a low percentage of missing values. We will remove the full row on missing cells.</p>
+                        <iframe src="https://jovian.ai/embed?url=https://jovian.ai/sergioalves94/hotel-booking-demand-eda/v/52&cellId=18" title="Jovian Viewer" height="88" width="100%" style="margin 0 auto; max-width: 800px;" frameborder="0" scrolling="auto"></iframe>
+                        <p>Now we will drop the days_in_waiting_list column because we won’t use it for this analysis</p>
+                        <iframe src="https://jovian.ai/embed?url=https://jovian.ai/sergioalves94/hotel-booking-demand-eda/v/52&cellId=20" title="Jovian Viewer" height="105" width="100%" style="margin 0 auto; max-width: 800px;" frameborder="0" scrolling="auto"></iframe>
+                        <p>let's check again the missing values.</p>
+                        <iframe src="https://jovian.ai/embed?url=https://jovian.ai/sergioalves94/hotel-booking-demand-eda/v/52&cellId=22" title="Jovian Viewer" height="null" width="100%" style="margin 0 auto; max-width: 800px;" frameborder="0" scrolling="auto"></iframe>
+                        <p>Perfect! now we don’t have any missing value.</p>
+                        <p>let's give a closer look to what we have.</p>
+                        <iframe src="https://jovian.ai/embed?url=https://jovian.ai/sergioalves94/hotel-booking-demand-eda/v/52&cellId=24" title="Jovian Viewer" height="373" width="100%" style="margin 0 auto; max-width: 800px;" frameborder="0" scrolling="auto"></iframe>
+                        <p>Here we can see some outliers.</p>
+                        <p>let's build boxplots to see it better.</p>
+                        <iframe src="https://jovian.ai/embed?url=https://jovian.ai/sergioalves94/hotel-booking-demand-eda/v/52&cellId=26" title="Jovian Viewer" height="null" width="100%" style="margin 0 auto; max-width: 800px;" frameborder="0" scrolling="auto"></iframe>
+                        <p>We remove the outliers by using conditionals to get and update these values.</p>
+                        <iframe src="https://jovian.ai/embed?url=https://jovian.ai/sergioalves94/hotel-booking-demand-eda/v/52&cellId=28" title="Jovian Viewer" height="305" width="100%" style="margin 0 auto; max-width: 800px;" frameborder="0" scrolling="auto"></iframe>
+                        <p>We removed the outliers. Our data is clean now.</p>
+
+                        <h2 class="section-heading">Exploratory Analysis and Visualization</h2>
+                        <p>In this section, we will explore the data to get insights about it.</p>
+                        <p>let's merge ‘children’ and ‘babies’ columns into ‘kids’ column.</p>
+                        <p>Then, we set the string type to the corresponding columns.</p>
+                        <iframe src="https://jovian.ai/embed?url=https://jovian.ai/sergioalves94/hotel-booking-demand-eda/v/52&cellId=33" title="Jovian Viewer" height="285" width="100%" style="margin 0 auto; max-width: 800px;" frameborder="0" scrolling="auto"></iframe>
+                        <p>let's convert arrival date to datetime</p>
+                        <iframe src="https://jovian.ai/embed?url=https://jovian.ai/sergioalves94/hotel-booking-demand-eda/v/52&cellId=35" title="Jovian Viewer" height="null" width="100%" style="margin 0 auto; max-width: 800px;" frameborder="0" scrolling="auto"></iframe>
+                        <h2 class="section-heading">a) Confirmed Bookings</h2>
+                        <p>let's see how many confirmed bookings per month there are</p>
+                        <iframe src="https://jovian.ai/embed?url=https://jovian.ai/sergioalves94/hotel-booking-demand-eda/v/52&cellId=37" title="Jovian Viewer" height="null" width="100%" style="margin 0 auto; max-width: 800px;" frameborder="0" scrolling="auto"></iframe>
+                        <p>The confirmed bookings goes from their lower value (4068) in January to their highest value (8618) in August.</p>
+                        <h2 class="section-heading">b) Cancelled bookings</h2>
+                        <p>Now let's check the cancelled bookings</p>
+                        <iframe src="https://jovian.ai/embed?url=https://jovian.ai/sergioalves94/hotel-booking-demand-eda/v/52&cellId=40" title="Jovian Viewer" height="349" width="100%" style="margin 0 auto; max-width: 800px;" frameborder="0" scrolling="auto"></iframe>
+                        <p>During the year, we have a 37.13% of cancelations.</p>
+                        <p>Now let's plot this result.</p>
+                        <iframe src="https://jovian.ai/embed?url=https://jovian.ai/sergioalves94/hotel-booking-demand-eda/v/52&cellId=42" title="Jovian Viewer" height="650" width="100%" style="margin 0 auto; max-width: 800px;" frameborder="0" scrolling="auto"></iframe>
+                        <h2 class="section-heading">c) Country</h2>
+                        <p>Here we will check the country of origin. Categories are represented in the ISO 3155–3:2013 format.</p>
+                        <iframe src="https://jovian.ai/embed?url=https://jovian.ai/sergioalves94/hotel-booking-demand-eda/v/52&cellId=44" title="Jovian Viewer" height="347" width="100%" style="margin 0 auto; max-width: 800px;" frameborder="0" scrolling="auto"></iframe>
+                        <h2 class="section-heading">d) Month</h2>
+                        <p>Now let's check the arrival date by months</p>
+                        <iframe src="https://jovian.ai/embed?url=https://jovian.ai/sergioalves94/hotel-booking-demand-eda/v/52&cellId=46" title="Jovian Viewer" height="368" width="100%" style="margin 0 auto; max-width: 800px;" frameborder="0" scrolling="auto"></iframe>
+                        <iframe src="https://jovian.ai/embed?url=https://jovian.ai/sergioalves94/hotel-booking-demand-eda/v/52&cellId=47" title="Jovian Viewer" height="457" width="100%" style="margin 0 auto; max-width: 800px;" frameborder="0" scrolling="auto"></iframe>
+                        <h2 class="section-heading">e) Market Segment</h2>
+                        <p>let's check the Market segment designation. In categories, the term “TA” means “Travel Agents” and “TO” means “Tour Operators”</p>
+                        <iframe src="https://jovian.ai/embed?url=https://jovian.ai/sergioalves94/hotel-booking-demand-eda/v/52&cellId=49" title="Jovian Viewer" height="264" width="100%" style="margin 0 auto; max-width: 800px;" frameborder="0" scrolling="auto"></iframe>
+                        <iframe src="https://jovian.ai/embed?url=https://jovian.ai/sergioalves94/hotel-booking-demand-eda/v/52&cellId=50" title="Jovian Viewer" height="457" width="100%" style="margin 0 auto; max-width: 800px;" frameborder="0" scrolling="auto"></iframe>
+                        <h2 class="section-heading">f) Year</h2>
+                        <p>Year of arrival date</p>
+                        <iframe src="https://jovian.ai/embed?url=https://jovian.ai/sergioalves94/hotel-booking-demand-eda/v/52&cellId=52" title="Jovian Viewer" height="180" width="100%" style="margin 0 auto; max-width: 800px;" frameborder="0" scrolling="auto"></iframe>
+                        <iframe src="https://jovian.ai/embed?url=https://jovian.ai/sergioalves94/hotel-booking-demand-eda/v/52&cellId=53" title="Jovian Viewer" height="457" width="100%" style="margin 0 auto; max-width: 800px;" frameborder="0" scrolling="auto"></iframe>
+                        <h2 class="section-heading">g) Meal</h2>
+                        <p>Type of meal booked. Categories are presented in standard hospitality meal packages:</p>
+                        <ul>
+                            <li>Undefined/SC – no meal package;</li>
+                            <li>BB – Bed & Breakfast;</li>
+                            <li>HB – Half board (breakfast and one other meal – usually dinner);</li>
+                            <li>FB – Full board (breakfast, lunch and dinner)</li>
+                        </ul>
+                        <iframe src="https://jovian.ai/embed?url=https://jovian.ai/sergioalves94/hotel-booking-demand-eda/v/52&cellId=55" title="Jovian Viewer" height="222" width="100%" style="margin 0 auto; max-width: 800px;" frameborder="0" scrolling="auto"></iframe>
+                        <iframe src="https://jovian.ai/embed?url=https://jovian.ai/sergioalves94/hotel-booking-demand-eda/v/52&cellId=56" title="Jovian Viewer" height="456" width="100%" style="margin 0 auto; max-width: 800px;" frameborder="0" scrolling="auto"></iframe>
+                        <h2 class="section-heading">h) Customer Type</h2>
+                        <p>Type of booking, assuming one of four categories:</p>
+                        <ul>
+                            <li>Contract - when the booking has an allotment or other type of contract associated to it;</li>
+                            <li>Group – when the booking is associated to a group;</li>
+                            <li>Transient – when the booking is not part of a group or contract, and is not associated to other transient booking;</li>
+                            <li>Transient-party – when the booking is transient, but is associated to at least other transient booking</li>
+                        </ul>
+                        <iframe src="https://jovian.ai/embed?url=https://jovian.ai/sergioalves94/hotel-booking-demand-eda/v/52&cellId=58" title="Jovian Viewer" height="201" width="100%" style="margin 0 auto; max-width: 800px;" frameborder="0" scrolling="auto"></iframe>
+                        <iframe src="https://jovian.ai/embed?url=https://jovian.ai/sergioalves94/hotel-booking-demand-eda/v/52&cellId=59" title="Jovian Viewer" height="457" width="100%" style="margin 0 auto; max-width: 800px;" frameborder="0" scrolling="auto"></iframe>
+                        <h2 class="section-heading">i) Reserved Room type</h2>
+                        <p>Code of room type reserved. Code is presented instead of designation for anonymity reasons.</p>
+                        <iframe src="https://jovian.ai/embed?url=https://jovian.ai/sergioalves94/hotel-booking-demand-eda/v/52&cellId=61" title="Jovian Viewer" height="326" width="100%" style="margin 0 auto; max-width: 800px;" frameborder="0" scrolling="auto"></iframe>
+                        <iframe src="https://jovian.ai/embed?url=https://jovian.ai/sergioalves94/hotel-booking-demand-eda/v/52&cellId=62" title="Jovian Viewer" height="457" width="100%" style="margin 0 auto; max-width: 800px;" frameborder="0" scrolling="auto"></iframe>
+                        <h2 class="section-heading">j) Assigned Room type</h2>
+                        <p>Code for the type of room assigned to the booking. Sometimes the assigned room type differs from the reserved room type due to hotel operation reasons (e.g. overbooking) or by customer request. Code is presented instead of designation for anonymity reasons.</p>
+                        <iframe src="https://jovian.ai/embed?url=https://jovian.ai/sergioalves94/hotel-booking-demand-eda/v/52&cellId=64" title="Jovian Viewer" height="368" width="100%" style="margin 0 auto; max-width: 800px;" frameborder="0" scrolling="auto"></iframe>
+                        <iframe src="https://jovian.ai/embed?url=https://jovian.ai/sergioalves94/hotel-booking-demand-eda/v/52&cellId=65" title="Jovian Viewer" height="457" width="100%" style="margin 0 auto; max-width: 800px;" frameborder="0" scrolling="auto"></iframe>
+                        <h2 class="section-heading">k) Booking Changes</h2>
+                        <p>Number of changes/amendments made to the booking from the moment the booking was entered on the PMS until the moment of check-in or cancellation</p>
+                        <iframe src="https://jovian.ai/embed?url=https://jovian.ai/sergioalves94/hotel-booking-demand-eda/v/52&cellId=67" title="Jovian Viewer" height="243" width="100%" style="margin 0 auto; max-width: 800px;" frameborder="0" scrolling="auto"></iframe>
+                        <iframe src="https://jovian.ai/embed?url=https://jovian.ai/sergioalves94/hotel-booking-demand-eda/v/52&cellId=68" title="Jovian Viewer" height="455" width="100%" style="margin 0 auto; max-width: 800px;" frameborder="0" scrolling="auto"></iframe>
+                        <h2 class="section-heading">l) Distribution Channel</h2> 
+                        <p>Booking distribution channel. The term “TA” means “Travel Agents” and “TO” means “Tour Operators”</p>
+                        <iframe src="https://jovian.ai/embed?url=https://jovian.ai/sergioalves94/hotel-booking-demand-eda/v/52&cellId=70" title="Jovian Viewer" height="222" width="100%" style="margin 0 auto; max-width: 800px;" frameborder="0" scrolling="auto"></iframe>
+                        <iframe src="https://jovian.ai/embed?url=https://jovian.ai/sergioalves94/hotel-booking-demand-eda/v/52&cellId=71" title="Jovian Viewer" height="455" width="100%" style="margin 0 auto; max-width: 800px;" frameborder="0" scrolling="auto"></iframe>
+                        <h2 class="section-heading">m) Repeated Guest</h2> 
+                        <p>Check if the booking name was from a repeated guest (1) or not (0)</p>
+                        <iframe src="https://jovian.ai/embed?url=https://jovian.ai/sergioalves94/hotel-booking-demand-eda/v/52&cellId=73" title="Jovian Viewer" height="160" width="100%" style="margin 0 auto; max-width: 800px;" frameborder="0" scrolling="auto"></iframe>
+                        <iframe src="https://jovian.ai/embed?url=https://jovian.ai/sergioalves94/hotel-booking-demand-eda/v/52&cellId=74" title="Jovian Viewer" height="503" width="100%" style="margin 0 auto; max-width: 800px;" frameborder="0" scrolling="auto"></iframe>
+                        <h2 class="section-heading">n) Deposit Type</h2>
+                        <p>Indication on if the customer made a deposit to guarantee the booking. This variable can assume three categories:</p>
+                        <ul>
+                            <li>No Deposit – no deposit was made;</li>
+                            <li>Non Refund – a deposit was made in the value of the total stay cost;</li>
+                            <li>Refundable – a deposit was made with a value under the total cost of stay.</li>
+                        </ul>
+                        <iframe src="https://jovian.ai/embed?url=https://jovian.ai/sergioalves94/hotel-booking-demand-eda/v/52&cellId=76" title="Jovian Viewer" height="180" width="100%" style="margin 0 auto; max-width: 800px;" frameborder="0" scrolling="auto"></iframe>
+                        <iframe src="https://jovian.ai/embed?url=https://jovian.ai/sergioalves94/hotel-booking-demand-eda/v/52&cellId=77" title="Jovian Viewer" height="501" width="100%" style="margin 0 auto; max-width: 800px;" frameborder="0" scrolling="auto"></iframe>
+                        <h2 class="section-heading">o) Required Car Parking Spaces</h2>
+                        <p>Number of car parking spaces required by the customer.</p>
+                        <iframe src="https://jovian.ai/embed?url=https://jovian.ai/sergioalves94/hotel-booking-demand-eda/v/52&cellId=79" title="Jovian Viewer" height="201" width="100%" style="margin 0 auto; max-width: 800px;" frameborder="0" scrolling="auto"></iframe>
+                        <iframe src="https://jovian.ai/embed?url=https://jovian.ai/sergioalves94/hotel-booking-demand-eda/v/52&cellId=80" title="Jovian Viewer" height="501" width="100%" style="margin 0 auto; max-width: 800px;" frameborder="0" scrolling="auto"></iframe>
+                        <h2 class="section-heading">p) Total Members</h2>
+                        <p>Total members per reservation.</p>
+                        <iframe src="https://jovian.ai/embed?url=https://jovian.ai/sergioalves94/hotel-booking-demand-eda/v/52&cellId=82" title="Jovian Viewer" height="243" width="100%" style="margin 0 auto; max-width: 800px;" frameborder="0" scrolling="auto"></iframe>
+                        <iframe src="https://jovian.ai/embed?url=https://jovian.ai/sergioalves94/hotel-booking-demand-eda/v/52&cellId=83" title="Jovian Viewer" height="501" width="100%" style="margin 0 auto; max-width: 800px;" frameborder="0" scrolling="auto"></iframe>
+                        <h2 class="section-heading">q) Reservation Status</h2>
+                        <p>Reservation last status, assuming one of three categories:</p>
+                        <ul>
+                            <li>Canceled – booking was canceled by the customer;</li>
+                            <li>Check-Out – customer has checked in but already departed;</li>
+                            <li>No-Show – customer did not check-in and did inform the hotel of the reason why</li>
+                        </ul>
+                        <iframe src="https://jovian.ai/embed?url=https://jovian.ai/sergioalves94/hotel-booking-demand-eda/v/52&cellId=85" title="Jovian Viewer" height="180" width="100%" style="margin 0 auto; max-width: 800px;" frameborder="0" scrolling="auto"></iframe>
+                        <iframe src="https://jovian.ai/embed?url=https://jovian.ai/sergioalves94/hotel-booking-demand-eda/v/52&cellId=86" title="Jovian Viewer" height="501" width="100%" style="margin 0 auto; max-width: 800px;" frameborder="0" scrolling="auto"></iframe>
+                        <h2 class="section-heading">r) Hotel Type</h2>
+                        <p>let's see the proportion of reservations between hotel types.</p>
+                        <iframe src="https://jovian.ai/embed?url=https://jovian.ai/sergioalves94/hotel-booking-demand-eda/v/52&cellId=88" title="Jovian Viewer" height="160" width="100%" style="margin 0 auto; max-width: 800px;" frameborder="0" scrolling="auto"></iframe>
+                        <iframe src="https://jovian.ai/embed?url=https://jovian.ai/sergioalves94/hotel-booking-demand-eda/v/52&cellId=89" title="Jovian Viewer" height="500" width="100%" style="margin 0 auto; max-width: 800px;" frameborder="0" scrolling="auto"></iframe>
+                        <h2 class="section-heading">s) Relation between prices and month</h2>
+                        <iframe src="https://jovian.ai/embed?url=https://jovian.ai/sergioalves94/hotel-booking-demand-eda/v/52&cellId=91" title="Jovian Viewer" height="733" width="100%" style="margin 0 auto; max-width: 800px;" frameborder="0" scrolling="auto"></iframe>
+                        <p>Here, we can see prices for resort hotels are higher and fluctuate more than city hotels.</p>
+                        <h2 class="section-heading">t) ADR</h2>
+                        <iframe src="https://jovian.ai/embed?url=https://jovian.ai/sergioalves94/hotel-booking-demand-eda/v/52&cellId=94" title="Jovian Viewer" height="465" width="100%" style="margin 0 auto; max-width: 800px;" frameborder="0" scrolling="auto"></iframe>
+                        <p>For resort hotels, the average daily rate is more expensive during August, July and September.</p>
+                        <p>For city hotels, the average daily rate is more expensive during August, July, June and May.</p>
+
+                        <h2 class="section-heading">Asking and Answering Questions</h2>
+                        <p>Now we will ask and answer some interesting questions about the data.</p>
+                        <ol>
+                            <li>
+                                Which are the three most common and uncommon countries of origin?
+                                <iframe src="https://jovian.ai/embed?url=https://jovian.ai/sergioalves94/hotel-booking-demand-eda/v/52&cellId=100" title="Jovian Viewer" height="800" width="100%" style="margin 0 auto; max-width: 800px;" frameborder="0" scrolling="auto"></iframe>
+                                <p>As we can see, Portugal tops the list with 48,586 of the cases, followed by Great Britain with 12,129 and France with 10,415.</p>
+                                <p>There are 30 countries that can be considered as the most uncommon country of origin, with 1 guest per country. Among these, we have Madagascar, Dominica, Mali, Guyana, Palau, Kiribati, Sudan, etc.</p>
+                            </li>
+                            <li>
+                                Which are the months of highest and least occupation?
+                                <iframe src="https://jovian.ai/embed?url=https://jovian.ai/sergioalves94/hotel-booking-demand-eda/v/52&cellId=103" title="Jovian Viewer" height="368" width="100%" style="margin 0 auto; max-width: 800px;" frameborder="0" scrolling="auto"></iframe>
+                                <p>The month of highest occupation is August with 11.65% of the reservations. The month of lest occupation is January with 4.94% of the reservations.</p>
+                            </li>
+                            <li>
+                                What is the most popular meal package?
+                                <iframe src="https://jovian.ai/embed?url=https://jovian.ai/sergioalves94/hotel-booking-demand-eda/v/52&cellId=106" title="Jovian Viewer" height="222" width="100%" style="margin 0 auto; max-width: 800px;" frameborder="0" scrolling="auto"></iframe>
+                                <p>The Bed & Breakfast option is the most popular, with a frequency of 77.26%.</p>
+                            </li>
+                            <li>
+                                Which is the most reserved room type?
+                                <iframe src="https://jovian.ai/embed?url=https://jovian.ai/sergioalves94/hotel-booking-demand-eda/v/52&cellId=109" title="Jovian Viewer" height="326" width="100%" style="margin 0 auto; max-width: 800px;" frameborder="0" scrolling="auto"></iframe>
+                                <p>The "A" room type is the most popular among the clients, with 71.99% of the reservations.</p>
+                            </li>
+                            <li>
+                                How many bookings changes have been done during the studied period?
+                                <iframe src="https://jovian.ai/embed?url=https://jovian.ai/sergioalves94/hotel-booking-demand-eda/v/52&cellId=112" title="Jovian Viewer" height="118" width="100%" style="margin 0 auto; max-width: 800px;" frameborder="0" scrolling="auto"></iframe>
+                                <p>There were 25,829 registered changes in the bookings during this period.</p>
+                            </li>
+                            <li>
+                                How many people have been registered in the hotel?
+                                <iframe src="https://jovian.ai/embed?url=https://jovian.ai/sergioalves94/hotel-booking-demand-eda/v/52&cellId=115" title="Jovian Viewer" height="118" width="100%" style="margin 0 auto; max-width: 800px;" frameborder="0" scrolling="auto"></iframe>
+                                <p>233,934 people have been registered in the hotel.</p>
+                            </li>
+                            <li>
+                                How many car parking spaces have been used?
+                                <iframe src="https://jovian.ai/embed?url=https://jovian.ai/sergioalves94/hotel-booking-demand-eda/v/52&cellId=118" title="Jovian Viewer" height="118" width="100%" style="margin 0 auto; max-width: 800px;" frameborder="0" scrolling="auto"></iframe>
+                                <p>7,342 car parking spaces have been used.</p>
+                            </li>
+                            <li>
+                                What is the most common customer type?
+                                <iframe src="https://jovian.ai/embed?url=https://jovian.ai/sergioalves94/hotel-booking-demand-eda/v/52&cellId=121" title="Jovian Viewer" height="201" width="100%" style="margin 0 auto; max-width: 800px;" frameborder="0" scrolling="auto"></iframe>
+                                <p>Trasients are the most common customer type, they represent 75% of the total customers.</p>
+                            </li>
+                        </ol>
+
+                        <h2 class="section-heading">Inferences and Conclusions</h2>
+                        <ul>
+                            <li>The majority of guests come from western europe countries.</li>
+                            <li>The majority of reservations are for city hotels.</li>
+                            <li>The number of repeated guests is too low.</li>
+                            <li>The majority of reservations converts into successful transactions.</li>
+                        </ul>
+
+                        <h2 class="section-heading">References</h2>
+                        <ul>
+                            <li><a href="https://pandas.pydata.org/docs/user_guide/index.html" target="_BLANK">Pandas user guide</a></li>
+                            <li><a href="https://matplotlib.org/3.3.1/users/index.html" target="_BLANK">Matplotlib user guide</a></li>
+                            <li><a href="https://seaborn.pydata.org/tutorial.html" target="_BLANK">Seaborn user guide & tutorial</a></li>
+                        </ul>
+                </div>
+            </div>
+        </article>
+        <!-- Footer-->
+        <footer class="border-top">
+            <div class="container px-4 px-lg-5">
+                <div class="row gx-4 gx-lg-5 justify-content-center">
+                    <div class="col-md-10 col-lg-8 col-xl-7">
+                        <ul class="list-inline text-center">
+                            <li class="list-inline-item">
+                                <a href="https://twitter.com/SergioAlves1994" target="_BLANK">
+                                    <span class="fa-stack fa-lg">
+                                        <i class="fas fa-circle fa-stack-2x"></i>
+                                        <i class="fab fa-twitter fa-stack-1x fa-inverse"></i>
+                                    </span>
+                                </a>
+                            </li>
+                            <li class="list-inline-item">
+                                <a href="https://www.linkedin.com/in/sergio-alves-958bb453/" target="_BLANK">
+                                    <span class="fa-stack fa-lg">
+                                        <i class="fas fa-circle fa-stack-2x"></i>
+                                        <i class="fab fa-linkedin-in fa-stack-1x fa-inverse"></i>
+                                    </span>
+                                </a>
+                            </li>
+                            <li class="list-inline-item">
+                                <a href="https://github.com/salves94" target="_BLANK">
+                                    <span class="fa-stack fa-lg">
+                                        <i class="fas fa-circle fa-stack-2x"></i>
+                                        <i class="fab fa-github fa-stack-1x fa-inverse"></i>
+                                    </span>
+                                </a>
+                            </li>
+                            <li class="list-inline-item">
+                                <a href="https://medium.com/@sergioalves94/" target="_BLANK">
+                                    <span class="fa-stack fa-lg">
+                                        <i class="fas fa-circle fa-stack-2x"></i>
+                                        <i class="fab fa-medium fa-stack-1x fa-inverse"></i>
+                                    </span>
+                                </a>
+                            </li>
+                        </ul>
+                        <div class="small text-center text-muted fst-italic">Copyright &copy; SART 2021</div>
+                    </div>
+                </div>
+            </div>
+        </footer>
+        <!-- Bootstrap core JS-->
+        <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js"></script>
+        <!-- Core theme JS-->
+        <script src="js/scripts.js"></script>
+    </body>
+</html>

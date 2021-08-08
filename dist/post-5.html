@@ -1,0 +1,185 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="utf-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
+        <meta name="description" content="" />
+        <meta name="author" content="" />
+        <title>Sergio Alves</title>
+        <link rel="icon" type="image/x-icon" href="assets/favicon.ico" />
+        <!-- Font Awesome icons (free version)-->
+        <script src="https://use.fontawesome.com/releases/v5.15.3/js/all.js" crossorigin="anonymous"></script>
+        <!-- Google fonts-->
+        <link href="https://fonts.googleapis.com/css?family=Lora:400,700,400italic,700italic" rel="stylesheet" type="text/css" />
+        <link href="https://fonts.googleapis.com/css?family=Open+Sans:300italic,400italic,600italic,700italic,800italic,400,300,600,700,800" rel="stylesheet" type="text/css" />
+        <!-- Core theme CSS (includes Bootstrap)-->
+        <link href="css/styles.css" rel="stylesheet" />
+    </head>
+    <body>
+        <!-- Navigation-->
+        <nav class="navbar navbar-expand-lg navbar-light" id="mainNav">
+            <div class="container px-4 px-lg-5">
+                <a class="navbar-brand" href="index.html">Sergio Alves</a>
+                <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarResponsive" aria-controls="navbarResponsive" aria-expanded="false" aria-label="Toggle navigation">
+                    Menu
+                    <i class="fas fa-bars"></i>
+                </button>
+                <div class="collapse navbar-collapse" id="navbarResponsive">
+                    <ul class="navbar-nav ms-auto py-4 py-lg-0">
+                        <li class="nav-item"><a class="nav-link px-lg-3 py-3 py-lg-4" href="index.html">Home</a></li>
+                        <li class="nav-item"><a class="nav-link px-lg-3 py-3 py-lg-4" href="about.html">About</a></li>
+                    </ul>
+                </div>
+            </div>
+        </nav>
+        <!-- Page Header-->
+        <header class="masthead" style="background-image: url('assets/img/post-5-bg.png')">
+            <div class="container position-relative px-4 px-lg-5">
+                <div class="row gx-4 gx-lg-5 justify-content-center">
+                    <div class="col-md-10 col-lg-8 col-xl-7">
+                        <div class="post-heading">
+                            <h1>5 NumPy Functions that you Should Know</h1>
+                            <h2 class="subheading">A Brief Introduction to NumPy</h2>
+                            <span class="meta">
+                                Posted by
+                                <a href="#!">Sergio Alves</a>
+                                on August 31, 2020
+                            </span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </header>
+        <!-- Post Content-->
+        <article class="mb-4">
+            <div class="container px-4 px-lg-5">
+                <div class="row gx-4 gx-lg-5 justify-content-center">
+                    <div class="col-md-10 col-lg-8 col-xl-7">
+                        <p>NumPy is an open-source extension for Python that allows us to use vectors and matrices. We can also use it to work in the domain of linear algebra and fourier transforms.</p>
+                        <p>By using this library, we can get faster results than those obtained from the traditional Python lists. This happens due to its locality reference (the data is stored at one continuous place in memory).</p>
+                        <p>In this article we will go through five useful NumPy functions.</p>
+                        <ul>
+                            <li>array</li>
+                            <li>transpose</li>
+                            <li>reshape</li>
+                            <li>sin</li>
+                            <li>around</li>
+                        </ul>
+                        <p>Let’s begin by importing Numpy and listing out the functions covered in this notebook.</p>
+                        <iframe src="https://jovian.ai/embed?url=https://jovian.ai/sergioalves94/numpy-array-operations/v/14&cellId=5" title="Jovian Viewer" height="88" width="100%" style="margin 0 auto; max-width: 800px;" frameborder="0" scrolling="auto"></iframe>
+                        <iframe src="https://jovian.ai/embed?url=https://jovian.ai/sergioalves94/numpy-array-operations/v/14&cellId=6" title="Jovian Viewer" height="188" width="100%" style="margin 0 auto; max-width: 800px;" frameborder="0" scrolling="auto"></iframe>
+
+                        <h2 class="section-heading">Function 1 - np.array</h2>
+                        <p>We use this function when we want to create a NumPy array.</p>
+                        <iframe src="https://jovian.ai/embed?url=https://jovian.ai/sergioalves94/numpy-array-operations/v/14&cellId=8" title="Jovian Viewer" height="138" width="100%" style="margin 0 auto; max-width: 800px;" frameborder="0" scrolling="auto"></iframe>
+                        <p>Here, we created a 1-dimension NumPy array. It handles integer data type elements by default.</p>
+                        <iframe src="https://jovian.ai/embed?url=https://jovian.ai/sergioalves94/numpy-array-operations/v/14&cellId=10" title="Jovian Viewer" height="138" width="100%" style="margin 0 auto; max-width: 800px;" frameborder="0" scrolling="auto"></iframe>
+                        <p>Here, we created a 1-dimension NumPy array. It handles float data type elements by default.</p>
+                        <iframe src="https://jovian.ai/embed?url=https://jovian.ai/sergioalves94/numpy-array-operations/v/14&cellId=12" title="Jovian Viewer" height="255" width="100%" style="margin 0 auto; max-width: 800px;" frameborder="0" scrolling="auto"></iframe>
+                        <p>By using the dtype attribute, we can set the default data type. If we use this parameter with an incompatible set of elements, we will get this error.</p>
+                        <p>This function is very useful when we want to turn an array-like variable into a NumPy Array in order to apply any of the numerous NumPy functions.</p>
+
+                        <h2 class="section-heading">Function 2 - np.transpose</h2>
+                        <p>This function returns the transpose of an array. The transpose flips an array over its diagonal; that is, it switches the row and column indices of the array.</p>
+                        <iframe src="https://jovian.ai/embed?url=https://jovian.ai/sergioalves94/numpy-array-operations/v/14&cellId=17" title="Jovian Viewer" height="200" width="100%" style="margin 0 auto; max-width: 800px;" frameborder="0" scrolling="auto"></iframe>
+                        <p>Here, we got the transpose of the 2 x 3 original array, which is a 3 x 2 array.</p>
+                        <iframe src="https://jovian.ai/embed?url=https://jovian.ai/sergioalves94/numpy-array-operations/v/14&cellId=19" title="Jovian Viewer" height="245" width="100%" style="margin 0 auto; max-width: 800px;" frameborder="0" scrolling="auto"></iframe>
+                        <p>By using the second argument (axes), you can permute the axes by a given order.</p>
+                        <iframe src="https://jovian.ai/embed?url=https://jovian.ai/sergioalves94/numpy-array-operations/v/14&cellId=21" title="Jovian Viewer" height="800" width="100%" style="margin 0 auto; max-width: 800px;" frameborder="0" scrolling="auto"></iframe>
+                        <p>When you use the second argument, you have to be sure to use the right number of axes, otherwise, it will crash.</p>
+                        <p>You can use this function when you want to get the transpose from an array (e.g. when you work with linear regression).</p>
+
+                        <h2 class="section-heading">Function 3 - np.reshape</h2>
+                        <p>This function is useful when you want to change the shape of an array without changing its content.</p>
+                        <iframe src="https://jovian.ai/embed?url=https://jovian.ai/sergioalves94/numpy-array-operations/v/14&cellId=26" title="Jovian Viewer" height="158" width="100%" style="margin 0 auto; max-width: 800px;" frameborder="0" scrolling="auto"></iframe>
+                        <p>Here, we reshaped the array to a 1-dimension array of length 6.</p>
+                        <iframe src="https://jovian.ai/embed?url=https://jovian.ai/sergioalves94/numpy-array-operations/v/14&cellId=28" title="Jovian Viewer" height="158" width="100%" style="margin 0 auto; max-width: 800px;" frameborder="0" scrolling="auto"></iframe>
+                        <p>By using the parameter 'order', we can place the elements into the reshaped array using this index order. 'F' means to read / write the elements using Fortran-like index order, with the first index changing fastest, and the last index changing slowest.</p>
+                        <iframe src="https://jovian.ai/embed?url=https://jovian.ai/sergioalves94/numpy-array-operations/v/14&cellId=30" title="Jovian Viewer" height="800" width="100%" style="margin 0 auto; max-width: 800px;" frameborder="0" scrolling="auto"></iframe>
+                        <p>When you use the order parameter, make sure to set a valid argument ('C', 'F' or 'A').</p>
+                        <p>In this case, we used an invalid value 'G', that's why it crashed.</p>
+                        <p>You can use this function when you want to reshape an array to make it compatible with other arrays for arithmetic operations.</p>
+
+                        <h2 class="section-heading">Function 4 - np.sin</h2>
+                        <p>This function implements the trigonometric sine</p>
+                        <iframe src="https://jovian.ai/embed?url=https://jovian.ai/sergioalves94/numpy-array-operations/v/14&cellId=35" title="Jovian Viewer" height="138" width="100%" style="margin 0 auto; max-width: 800px;" frameborder="0" scrolling="auto"></iframe>
+                        <p>Here, we printed sine of one angle.</p>
+                        <iframe src="https://jovian.ai/embed?url=https://jovian.ai/sergioalves94/numpy-array-operations/v/14&cellId=37" title="Jovian Viewer" height="138" width="100%" style="margin 0 auto; max-width: 800px;" frameborder="0" scrolling="auto"></iframe>
+                        <p>Here, we printed sines of an array of angles given in degrees.</p>
+                        <iframe src="https://jovian.ai/embed?url=https://jovian.ai/sergioalves94/numpy-array-operations/v/14&cellId=39" title="Jovian Viewer" height="296" width="100%" style="margin 0 auto; max-width: 800px;" frameborder="0" scrolling="auto"></iframe>
+                        <p>In this case, we are getting an error due to the data type of the argument. Always use numeric values.</p>
+                        <p>The sine is one of the fundamental functions of trigonometry, so you might need to use this function often.</p>
+
+                        <h2 class="section-heading">Function 5 - np.around</h2>
+                        <p>With this function, you can evenly round to the given number of decimals.</p>
+                        <iframe src="https://jovian.ai/embed?url=https://jovian.ai/sergioalves94/numpy-array-operations/v/14&cellId=44" title="Jovian Viewer" height="null" width="100%" style="margin 0 auto; max-width: 800px;" frameborder="0" scrolling="auto"></iframe>
+                        <p>By default, it rounds to 0 decimals.</p>
+                        <iframe src="https://jovian.ai/embed?url=https://jovian.ai/sergioalves94/numpy-array-operations/v/14&cellId=46" title="Jovian Viewer" height="138" width="100%" style="margin 0 auto; max-width: 800px;" frameborder="0" scrolling="auto"></iframe>
+                        <p>Here, we round the values to 1 decimal.</p>
+                        <iframe src="https://jovian.ai/embed?url=https://jovian.ai/sergioalves94/numpy-array-operations/v/14&cellId=48" title="Jovian Viewer" height="800" width="100%" style="margin 0 auto; max-width: 800px;" frameborder="0" scrolling="auto"></iframe>
+                        <p>Always make sure to use numbers instead of strings, otherwise it will crash.</p>
+                        <p>This function is useful when we are using a huge amount of data and we want to simplify it by reducing the number of decimals.</p>
+
+                        <h2 class="section-heading">Conclusion</h2>
+                        <p>As you can see from this brief article, NumPy has many features that helps you to handle arrays. There are many more functionalities that you can review from the NumPy official documentation.</p>
+
+                        <h2 class="section-heading">Reference Links</h2>
+                        <ul>
+                            <li><a href="https://numpy.org/doc/stable/user/quickstart.html" target="_BLANK">Numpy official tutorial</a></li>
+                            <li><a href="https://medium.com/@lucyji/numpy-tutorial-the-basics-3ecd2717b855" target="_BLANK">Numpy Tutorial — The Basics</a></li>
+                            <li><a href="https://medium.com/fintechexplained/why-should-we-use-numpy-c14a4fb03ee9" target="_BLANK">Why Should We Use NumPy?</a></li>
+                        </ul>
+
+                </div>
+            </div>
+        </article>
+        <!-- Footer-->
+        <footer class="border-top">
+            <div class="container px-4 px-lg-5">
+                <div class="row gx-4 gx-lg-5 justify-content-center">
+                    <div class="col-md-10 col-lg-8 col-xl-7">
+                        <ul class="list-inline text-center">
+                            <li class="list-inline-item">
+                                <a href="https://twitter.com/SergioAlves1994" target="_BLANK">
+                                    <span class="fa-stack fa-lg">
+                                        <i class="fas fa-circle fa-stack-2x"></i>
+                                        <i class="fab fa-twitter fa-stack-1x fa-inverse"></i>
+                                    </span>
+                                </a>
+                            </li>
+                            <li class="list-inline-item">
+                                <a href="https://www.linkedin.com/in/sergio-alves-958bb453/" target="_BLANK">
+                                    <span class="fa-stack fa-lg">
+                                        <i class="fas fa-circle fa-stack-2x"></i>
+                                        <i class="fab fa-linkedin-in fa-stack-1x fa-inverse"></i>
+                                    </span>
+                                </a>
+                            </li>
+                            <li class="list-inline-item">
+                                <a href="https://github.com/salves94" target="_BLANK">
+                                    <span class="fa-stack fa-lg">
+                                        <i class="fas fa-circle fa-stack-2x"></i>
+                                        <i class="fab fa-github fa-stack-1x fa-inverse"></i>
+                                    </span>
+                                </a>
+                            </li>
+                            <li class="list-inline-item">
+                                <a href="https://medium.com/@sergioalves94/" target="_BLANK">
+                                    <span class="fa-stack fa-lg">
+                                        <i class="fas fa-circle fa-stack-2x"></i>
+                                        <i class="fab fa-medium fa-stack-1x fa-inverse"></i>
+                                    </span>
+                                </a>
+                            </li>
+                        </ul>
+                        <div class="small text-center text-muted fst-italic">Copyright &copy; SART 2021</div>
+                    </div>
+                </div>
+            </div>
+        </footer>
+        <!-- Bootstrap core JS-->
+        <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js"></script>
+        <!-- Core theme JS-->
+        <script src="js/scripts.js"></script>
+    </body>
+</html>
